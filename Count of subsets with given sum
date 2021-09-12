@@ -1,0 +1,28 @@
+class Solution{
+
+	public int perfectSum(int arr[],int N, int sum) 
+	{ 
+	    // Your code goes here
+	    int dp[][]=new int[N+1][sum+1];
+        for(int i=0;i<=N;i++){
+            dp[i][0]=1;
+        }
+        for(int j=1;j<=sum;j++){
+            dp[0][j]=0;
+        }
+        for(int i=1;i<=N;i++){
+            for(int j=1;j<=sum;j++){
+                if(j<arr[i-1])
+                   dp[i][j]=dp[i-1][j];
+                else{
+                   dp[i][j]=dp[i-1][j]+dp[i-1][j-arr[i-1]];
+                }
+            }
+        }
+        return dp[N][sum];
+	    
+	} 
+}
+
+
+link : https://practice.geeksforgeeks.org/problems/perfect-sum-problem5633/1
